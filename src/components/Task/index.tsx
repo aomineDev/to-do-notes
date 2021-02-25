@@ -20,7 +20,7 @@ const Task: React.FC<TaskProps> = ({ title, description }) => {
         <p className="task__description">{description}</p>
       </div>
       <div className="task__options">
-        <Tooltip title="options" placement="bottom">
+        <Tooltip title="options" placement="top">
           <div className="task__doots">
             <div className="task__doots-icon"></div>
           </div>
