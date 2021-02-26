@@ -11,15 +11,6 @@ interface ITask {
   done: boolean
 }
 
-// const tasks: ITask[] = [
-//   {
-//     key: '1',
-//     title: 'CSS | Dark Mode',
-//     description: 'Lorem ipsum, dolor sit amet consectetur adipisicing.',
-//     done: false
-//   }
-// ]
-
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<ITask[]>([])
   const [title, setTitle] = useState<string>('')
