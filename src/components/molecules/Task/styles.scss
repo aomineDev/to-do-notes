@@ -1,0 +1,150 @@
+@import 'assets/scss/styles.scss';
+
+.task {
+  position: relative;
+  display: flex;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+
+  // checkbox
+  &__checkbox {
+    position: relative;
+    width: 50px;
+    height: auto;
+    flex-shrink: 0;
+    background-color: #CDDC39;
+    .is-complete & {
+      background-color: #ccc;
+    }
+  }
+  &__input {
+    display: none;
+  }
+  &__label {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 10px;
+    top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 4px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 5px;
+      border-left: 2px solid rgba(0, 0, 0, .8);
+      border-bottom: 2px solid rgba(0, 0, 0, .8);
+      transform: translateY(-1px) rotate(-45deg);
+      opacity: 0;
+      visibility: hidden;
+    }
+    &:hover {
+      background-color: rgba(255, 255, 255, .75);
+    }
+    &:hover::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__input:checked + &__label::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // body
+  &__body {
+    padding: 15px;
+    max-width: 220px;
+  }
+  &__title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    overflow-wrap: break-word;
+    .is-complete & {
+      color: #ccc;
+      text-decoration: line-through;
+    }
+  }
+  &__description {
+    font-size: 14px;
+    color: #757575;
+  }
+  
+  // actions
+  &__actions {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+  }
+  &__doots {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border-radius: 50%;
+    color: #333;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+  }
+  &:hover &__doots {
+    opacity: 1;
+    visibility: visible;
+  }
+  & &__doots:hover {
+    color: rgba(143, 68, 253, 1);
+  }
+  & &__doots:focus {
+    color: rgba(143, 68, 253, 1);
+    opacity: 1;
+    visibility: visible;
+  }
+  &__options {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0px rgba(0, 0, 0, .2);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 2;
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__option {
+    cursor: pointer;
+    font-size: 15px;
+    padding: {
+      top: 10px;
+      bottom: 10px;
+    }
+    min-width: 150px;
+    text-indent: 30px;
+    &--icon {
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: rgba(143, 68, 253, 0.1);
+      color: rgba(143, 68, 253, 1);
+    }
+    &--delete {
+      color: rgb(253, 68, 68);
+      &:hover {
+        background-color: rgba(253, 68, 68, 0.1);
+        color: rgb(253, 68, 68);
+      }
+    }
+  }
+}
+
+

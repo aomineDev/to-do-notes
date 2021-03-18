@@ -1,0 +1,62 @@
+// VARIABLES
+
+// Breakpoints
+$bp-xs-1: 320px;
+$bp-xs-2: 360px;
+$bp-xs-3: 400px;
+$bp-xs-4: 480px;
+
+$bp-sm-1: 600px;
+$bp-sm-2: 720px;
+$bp-sm-3: 840px;
+$bp-sm-4: 960px;
+
+$bp-md-1: 1024px;
+$bp-md-2: 1280px;
+
+$bp-lg-1: 1440px;
+$bp-lg-2: 1600px;
+
+$bp-xl-1: 1920px;
+
+// Background
+$primary-bg-color: $primary;
+$secondary-bg-color: $secondary;
+
+$bg-color: $white;
+$dark-bg-color: $grey-darken-4;
+$light-bg-color: $white;
+$grey-bg-color: $grey-lighten-4;
+
+$error-bg-color: $red;
+$success-bg-color: $green;
+$disabled-bg-color: $grey-lighten-2;
+
+// Text
+$primary-text-color: $primary;
+$secondary-text-color: $secondary;
+
+$text-color: $grey-darken-4;
+$dark-text-color: $grey-darken-4;
+$light-text-color: $white;
+$grey-text-color: $grey-darken-2;
+
+$error-text-color: $red;
+$success-text-color: $green;
+$disabled-text-color: $grey-darken-1;
+
+// Typographys
+$system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+$poppins: 'Poppins', sans-serif;
+$roboto: 'Roboto', sans-serif;
+$montserrat: 'Montserrat', sans-serif;
+
+// Fonts
+$font-base: $poppins;
+
+// App
+$app-md-padding: 40px;
+$app-sm-padding: 30px;
+$app-xs-padding: 20px;

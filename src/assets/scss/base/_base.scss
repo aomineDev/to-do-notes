@@ -1,0 +1,10 @@
+// Base
+
+body {
+  color: $text-color;
+  font-family: $font-base;
+}
+button,
+a {
+	@extend %tap-highlight;
+}

@@ -1,0 +1,54 @@
+// PLACEHOLDERS
+
+// Container
+%container {
+	max-width: 1440px;
+	width: 100%;
+	height: 100%;
+	padding: {
+		left: $app-sm-padding;
+		right: $app-sm-padding;
+	}
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	@include desktop($bp-xs-4) {
+		padding: {
+			left: $app-xs-padding;
+			right: $app-xs-padding;
+		}
+	}
+	@include desktop($bp-xl-1) {
+		max-width: 1280px;
+	}
+}
+
+// Remove tap highlight
+%tap-highlight {
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+// Center with flex
+%flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// Center with position absolute
+%absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+// Center with position fixed
+%fixed-center {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

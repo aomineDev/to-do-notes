@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles.scss'
 
 type Placement = 'top' | 'right' | 'left' | 'bottom'
 
@@ -11,10 +11,10 @@ const Tooltip: React.FC<TooltipProps> = ({ children, title, placement }) => {
   const tooltipClassName = `tooltip tooltip--${placement}`
 
   return (
-    <span className="tooltip-ref">
+    <div className="tooltip-ref">
       <div className={tooltipClassName}>{title}</div>
       {children}
-    </span>
+    </div>
   )
 }
 
