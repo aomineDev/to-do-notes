@@ -1,8 +1,10 @@
 // Base
 
 body {
-  color: $text-color;
+  background-color: $color-grey;
   font-family: $font-base;
+  font-size: $font-size-md-1;
+  color: $color-text;
 }
 button,
 a {

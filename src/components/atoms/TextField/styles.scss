@@ -1,0 +1,22 @@
+@import 'assets/scss/styles.scss';
+
+.text-field {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: $grey-lighten-2;
+  border-radius: $base-border-radius;
+  font-size: $font-size-sm-3;
+  transition: .3s;
+  &:hover {
+    background-color: darken($grey-lighten-3, 10%);
+  }
+  &:focus {
+    background-color: $white;
+    outline: 1px solid $color-primary;
+    // box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+  &::placeholder {
+    font-weight: 600;
+  }
+}

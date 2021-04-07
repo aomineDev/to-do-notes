@@ -1,15 +1,17 @@
+@import 'assets/scss/styles.scss';
+
 .tooltip-ref {
   position: relative;
   display: inline-block;
 }
 .tooltip {
   position: absolute;
-  padding: 5px 8px;
-  border-radius: 4px;
-  background-color: #212121;
-  color: #fff;
-  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: $base-border-radius;
+  background-color: $grey-darken-4;
   text-transform: capitalize;
+  color: $white;
+  font-size: $font-size-sm-2;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

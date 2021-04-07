@@ -1,13 +1,13 @@
 import { createPortal } from 'react-dom'
 import './styles.scss'
 
-interface ModalProps {
+interface IModal {
   closeModal?: () => void
 }
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement
 
-const Modal: React.FC<ModalProps> = ({ children }) => {
+const Modal: React.FC<IModal> = ({ children }) => {
   return (
     <div className="modal">
       <div className="modal__body">
@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   )
 }
 
-const ModalPortal: React.FC<ModalProps> = ({ children, closeModal }) => {
+const ModalPortal: React.FC<IModal> = ({ children, closeModal }) => {
   return createPortal(
     <Modal closeModal={closeModal}>{children}</Modal>,
     modalRoot

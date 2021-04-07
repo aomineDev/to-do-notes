@@ -1,13 +1,17 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
+import Menu from 'components/atoms/Menu'
+import MenuItem from 'components/atoms/MenuItem'
 import Modal from 'components/atoms/Modal'
 import Tooltip from 'components/atoms/Tooltip'
 
 import './styles.scss'
 
-interface TaskProps {
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+
+interface ITask {
   id: number
   index: number
   title: string
@@ -15,41 +19,22 @@ interface TaskProps {
   deleteTask: (index: number) => void
 }
 
-const Task: React.FC<TaskProps> = ({ id, index, title, description, deleteTask }) => {
+const Task: React.FC<ITask> = ({ id, index, title, description, deleteTask }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
-  const [isOptionsVisible, setIsOptionsVisible] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
-  const refBtn = useRef<HTMLButtonElement>(null)
-
-  let optionsClassName = 'task__options'
-  if (isOptionsVisible) optionsClassName += ' is-active'
-
   let taskClassName = 'task'
-  if (isChecked) taskClassName += ' is-complete'
+  if (isChecked) taskClassName += ' is-completed'
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (e: ChangeEvent): void => {
     setIsChecked(e.target.checked)
-  }
-
-  const handleBlur = (): void => {
-    setIsOptionsVisible(false)
-  }
-
-  const handleClick = (): void => {
-    if (!isOptionsVisible) {
-      setIsOptionsVisible(true)
-    } else {
-      setIsOptionsVisible(false)
-      refBtn.current?.blur()
-    }
   }
 
   const handleDeleteTask = (): void => {
     deleteTask(index)
   }
 
-  const handleEditClick = (): void => {
+  const handleEditTask = (): void => {
     setIsModalOpen(true)
   }
 
@@ -75,30 +60,32 @@ const Task: React.FC<TaskProps> = ({ id, index, title, description, deleteTask }
           <p className="task__description">{description}</p>
         </div>
         <div className="task__actions">
-          <Tooltip title="options" placement="top">
-            <button
-              className="task__doots"
-              onBlur={handleBlur}
-              onClick={handleClick}
-              ref={refBtn}
-            >
-              <FontAwesomeIcon icon={faEllipsisV}/>
-            </button>
-          </Tooltip>
-          <div className={optionsClassName}>
-            <p
-              className="task__option"
-              onClick={handleEditClick}
-            >
-              <span className="task__option--icon"><FontAwesomeIcon icon={faPen}/></span> Edit
-            </p>
-            <p
-              className="task__option task__option--delete"
-              onClick={handleDeleteTask}
-            >
-              <span className="task__option--icon"><FontAwesomeIcon icon={faTrash}/></span> Delete
-            </p>
-          </div>
+          <Menu
+            activator={(handleClick, handleBlur, refEl) => (
+              <Tooltip title="options" placement="top">
+                <button
+                  className="task__doots"
+                  onBlur={handleBlur}
+                  onClick={handleClick}
+                  ref={refEl}
+                >
+                  <FontAwesomeIcon icon={faEllipsisV}/>
+                </button>
+              </Tooltip>
+            )}
+          >
+            <MenuItem
+              handleClick={handleEditTask}
+              icon={faPen}
+              title='Edit'
+            />
+            <MenuItem
+              handleClick={handleDeleteTask}
+              icon={faTrash}
+              title='Delete'
+              isDanger
+            />
+          </Menu>
         </div>
       </div>
 

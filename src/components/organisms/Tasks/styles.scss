@@ -1,0 +1,35 @@
+@import 'assets/scss/styles.scss';
+
+.tasks {
+  width: 300px;
+  padding: 8px;
+  border-radius: $base-border-radius;
+  background-color: $grey-lighten-3;
+  &__title {
+    font-weight: 600;
+    font-size: $font-size-md-2;
+    margin-bottom: 10px;
+  }
+
+  &__not-found {
+    display: grid;
+    justify-items: center;
+    row-gap: 10px;
+    padding: {
+      top: 20px;
+      bottom: 20px;
+    };
+    font-size: $font-size-sm-3;
+    &__img {
+      width: 100px;
+    }
+    &__text {
+      color: $color-label;
+    }
+  }
+  
+  &__wrapper {
+    display: grid;
+    row-gap: 5px;    
+  }
+}

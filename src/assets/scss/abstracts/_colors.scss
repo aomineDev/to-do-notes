@@ -1,28 +1,24 @@
 // COLORS
 
-// Primary
-$primary-lighten-4: #ECADF6;
-$primary-lighten-3: #E480E5;
-$primary-lighten-2: #D740DA;
-$primary-lighten-1: #B824BB;
-$primary: #8A178C;
-$primary-darken-1: #69156A;
+// Main Colors
+$color-primary: #8739f9;
+$color-accent: #37b9f1;
+$color-grey: #f5f5f5;
 
-$primary-accent-1: #D7B7FF;
-$primary-accent-2: #B983FF;
-$primary-accent-3: #9349DD;
-$primary-accent-4: #7535B6;
-$primary-accent-5: #521E87;
-$primary-accent-6: #390F64;
+// Font Colors
+$color-text: #565360;
+$color-label: #908e9b;
+$color-disabled: #e1dfe9;
 
-// Secondary
-$secondary-lighten-4: #FFE499;
-$secondary-lighten-3: #FFD767;
-$secondary-lighten-2: #FFCB38;
-$secondary-lighten-1: #FFC41F;
-$secondary: #FFB703;
-$secondary-darken-1: #F1B406;
-$secondary-darken-2: #D39C00;
+// Status Colors
+$color-warning: #f9ae3f;
+$color-danger: #de5050;
+$color-success: #37bc64;
+
+// Soft Status Colors
+$color-warning-soft: #fff8de;
+$color-danger-soft: #fff3f3;
+$color-success-soft: #e2f8e9;
 
 // shades
 $black: #000000;
@@ -336,9 +332,8 @@ $blue-grey-darken-3: #37474f;
 $blue-grey-darken-4: #263238;
 
 $colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "dark": $grey-darken-4, 
+  "primary": $color-primary,
+  "accent": $color-accent,
   "black": $black,
   "white": $white,
   "red": $red,

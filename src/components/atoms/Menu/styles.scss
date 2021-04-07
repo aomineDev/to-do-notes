@@ -1,0 +1,17 @@
+@import 'assets/scss/styles.scss';
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0px rgba($black, .2);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 2;
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+}

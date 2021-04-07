@@ -1,0 +1,73 @@
+@import 'assets/scss/styles.scss';
+
+.spinner {
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: $color-primary;
+  stroke-dasharray: 55;
+  animation: spinner 2s infinite linear;
+
+  // Sizes
+  &--small {
+    stroke-width: 1px;
+    stroke-dasharray: 25;
+    animation: spinner-small 1s infinite linear;
+  }
+  &--large {
+    stroke-width: 4px;
+    stroke-dasharray: 110;
+    animation: spinner-large 3s infinite linear;
+  }
+
+  // Colors
+  &--dark {
+    stroke: $grey-darken-4;
+  }
+  &--light {
+    stroke: $white;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    stroke-dashoffset: 55;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    transform: rotate(360deg);
+  }
+
+  100% {
+    stroke-dashoffset: 55;
+    transform: rotate(1440deg);
+  }
+}
+@keyframes spinner-small {
+  0% {
+    stroke-dashoffset: 25;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    transform: rotate(360deg);
+  }
+
+  100% {
+    stroke-dashoffset: 25;
+    transform: rotate(1080deg);
+  }
+}
+@keyframes spinner-large {
+  0% {
+    stroke-dashoffset: 110;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    transform: rotate(720deg);
+  }
+  100% {
+    stroke-dashoffset: 110;
+    transform: rotate(2160deg);
+  }
+}
