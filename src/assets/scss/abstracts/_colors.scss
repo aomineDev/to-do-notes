@@ -334,6 +334,11 @@ $blue-grey-darken-4: #263238;
 $colors: (
   "primary": $color-primary,
   "accent": $color-accent,
+  "disabled": $color-disabled,
+  "success": $color-success,
+  "warning": $color-warning,
+  "danger": $color-danger,
+  "dark": $grey-darken-4,
   "black": $black,
   "white": $white,
   "red": $red,

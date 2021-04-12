@@ -2,14 +2,14 @@
 
 .text-field {
   width: 100%;
-  padding: 15px;
+  padding: 16px;
   margin-bottom: 10px;
   background-color: $grey-lighten-2;
   border-radius: $base-border-radius;
   font-size: $font-size-sm-3;
   transition: .3s;
   &:hover {
-    background-color: darken($grey-lighten-3, 10%);
+    background-color: darken($grey-lighten-2, 5%);
   }
   &:focus {
     background-color: $white;

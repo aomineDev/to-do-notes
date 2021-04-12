@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
+import Button from 'components/molecules/Button'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
@@ -72,6 +73,9 @@ const Tasks: React.FC = () => {
                 />
             ))
           }
+          <div>
+            <Button>Testeando</Button>
+          </div>
         </div>
       </div>
     </>

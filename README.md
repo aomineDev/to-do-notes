@@ -46,3 +46,7 @@
 - 3 medium font sizes
 - 3 large font sizes
 - 3 extra large font sizes
+
+## Rules Sass
+- separación de componentes: multiplos de 5
+- padding de componentes: multiplos de 4 

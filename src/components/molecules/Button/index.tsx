@@ -1,15 +1,27 @@
 import './styles.scss'
 
+type Type = 'button' | 'submit' | 'reset'
+
 interface IButton {
-  title: string
+  type?: Type
+  color?: string
 }
 
-const Button: React.FC<IButton> = ({ title }) => {
+const Button: React.FC<IButton> = ({
+  children,
+  type = 'button',
+  color
+}) => {
+  let buttonClassName = 'button'
+
+  if (color !== undefined) buttonClassName += ` button--${color}`
+
   return (
     <button
-      className="button"
+      className={buttonClassName}
+      type={type}
     >
-      {title}
+      {children}
     </button>
   )
 }

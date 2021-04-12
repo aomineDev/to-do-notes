@@ -1,5 +1,23 @@
 @import 'assets/scss/styles.scss';
 
 .button {
-  
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 64px;
+  min-height: 36px;
+  padding: {
+    left: 16px;
+    right: 16px;
+  }
+  border-radius: $base-border-radius;
+  background-color: $grey-lighten-2;
+  font-weight: 600;
+  font-size: $font-size-sm-3;
+  transition-duration: .3s;
+  overflow: hidden;
+  &:hover {
+    background-color: darken($grey-lighten-2, 5%);
+  }
 }
