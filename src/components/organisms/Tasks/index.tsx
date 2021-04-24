@@ -60,7 +60,7 @@ const Tasks: React.FC = () => {
           {tasks.length === 0
             ? <div className="tasks__not-found">
                 <img src={noTasks} alt="no tasks icon" className="tasks__not-found__img"/>
-                <p className="tasks__not-found__text">Tasks not found.</p>
+                <p className="tasks__not-found__text">Tasks not found</p>
               </div>
             : tasks.map(({ id, title, description }: ITask, index: number) => (
                 <Task
@@ -74,7 +74,11 @@ const Tasks: React.FC = () => {
             ))
           }
           <div>
-            <Button>Testeando</Button>
+            <Button
+              handleClick={() => console.log('testing button')}
+              color="primary"
+              size="large"
+            >Testeando</Button>
           </div>
         </div>
       </div>

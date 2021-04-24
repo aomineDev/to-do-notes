@@ -13,11 +13,78 @@
   }
   border-radius: $base-border-radius;
   background-color: $grey-lighten-2;
-  font-weight: 600;
+  font-weight: 500;
   font-size: $font-size-sm-3;
+  color: $dark;
   transition-duration: .3s;
   overflow: hidden;
   &:hover {
     background-color: darken($grey-lighten-2, 5%);
+  }
+
+  // Colors
+  @each $name, $color in $colors {
+    &--#{$name} {
+      background-color: $color;
+      @if $color == $yellow or $color == $white or $color == $light {
+        &:hover {
+          background-color: darken($color, 5%);
+        }
+      } @else {
+        color: $white;
+        &:hover {
+          background-color: lighten($color, 5%);
+        }
+      }
+    }
+  }
+
+  // Sizes
+  &--small {
+    min-width: 50px;
+    min-height: 28px;
+    padding: {
+      left: 12px;
+      right: 12px;
+    };
+    font-size: 12px;
+    & .button__icon {
+      font-size: 16px;
+    }
+  }
+
+  &--x-small {
+    min-width: 36px;
+    min-height: 20px;
+    padding: {
+      left: 8px;
+      right: 8px;
+    };
+    font-size: 10px;
+    & .button__icon {
+      font-size: 14px;
+    }
+  }
+
+  &--large {
+    min-width: 78px;
+    min-height: 44px;
+    padding: {
+      left: 20px;
+      right: 20px;
+    };
+  }
+
+  &--x-large {
+    min-width: 92px;
+    min-height: 52px;
+    padding: {
+      left: 24px;
+      right: 24px;
+    };
+    font-size: 16px;
+    & .button__icon {
+      font-size: 20px;
+    }
   }
 }

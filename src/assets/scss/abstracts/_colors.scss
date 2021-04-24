@@ -20,9 +20,11 @@ $color-warning-soft: #fff8de;
 $color-danger-soft: #fff3f3;
 $color-success-soft: #e2f8e9;
 
-// shades
+// Shades
 $black: #000000;
 $white: #ffffff;
+$dark: #262626;
+$light: #ffffff;
 
 // Red
 $red-lighten-5: #ffebee;
@@ -338,7 +340,8 @@ $colors: (
   "success": $color-success,
   "warning": $color-warning,
   "danger": $color-danger,
-  "dark": $grey-darken-4,
+  "dark": $dark,
+  "light": $light,
   "black": $black,
   "white": $white,
   "red": $red,
