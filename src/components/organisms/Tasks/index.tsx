@@ -77,7 +77,7 @@ const Tasks: React.FC = () => {
             <Button
               handleClick={() => console.log('testing button')}
               color="primary"
-              size="large"
+              elevation
             >Testeando</Button>
           </div>
         </div>

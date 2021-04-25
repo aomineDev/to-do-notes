@@ -15,7 +15,7 @@
   background-color: $grey-lighten-2;
   font-weight: 500;
   font-size: $font-size-sm-3;
-  color: $dark;
+  color: $grey-darken-4;
   transition-duration: .3s;
   overflow: hidden;
   &:hover {
@@ -86,5 +86,67 @@
     & .button__icon {
       font-size: 20px;
     }
+  }
+
+  // Block
+  &--block {
+    width: 100%;
+  }
+
+  // Elevation
+  &--elevation {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),
+    0 2px 2px rgba(0,0,0,.14),
+    0 1px 5px rgba(0,0,0,.12);
+  }
+
+  // Rounded
+  &--rounded {
+    border-radius: 26px;
+  }
+
+  // Text
+  &--text {
+    background-color: transparent;
+    box-shadow: none;
+    &:hover {
+      background-color: rgba($grey-lighten-2, 0.5);
+    }
+
+    @each $name, $color in $colors {
+      &.button--#{$name} {
+        color: $color;
+        &:hover {
+          background-color: rgba($color, 0.1);
+        }
+      }
+    }
+  }
+
+  // Outlined
+  &--outlined {
+    @extend .button--text;
+    border: 1px solid $grey-darken-4;
+    @each $name, $color in $colors {
+      &.button--#{$name} {
+        border: 1px solid $color;
+      }
+    }
+  }
+
+  // Disabled
+  &:disabled {
+    pointer-events: none;
+    background-color: $color-disabled;
+    color: $grey;
+    box-shadow: none;
+  }
+  &--text:disabled,
+  &--outlined:disabled {
+    background-color: transparent;
+    color: $color-disabled;
+  }
+  &--outlined:disabled {
+    border-color: $color-disabled;
   }
 }

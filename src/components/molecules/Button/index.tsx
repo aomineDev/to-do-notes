@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
-import { IButton } from './types'
+import { IButton, IContent } from './types'
 
 import './styles.scss'
 
-const Content: React.FC = ({
+const Content: React.FC<IContent> = ({
   children
 }) => (
    <>
@@ -19,13 +19,24 @@ const Button: React.FC<IButton> = ({
   href,
   color,
   size,
+  block,
+  elevation,
+  rounded,
+  text,
+  outlined,
+  isDisabled,
   handleClick
 }) => {
   let buttonClassName = 'button'
 
   if (color !== undefined) buttonClassName += ` button--${color}`
-
   if (size !== undefined) buttonClassName += ` button--${size}`
+
+  if (block !== undefined) buttonClassName += ' button--block'
+  if (elevation !== undefined) buttonClassName += ' button--elevation'
+  if (rounded !== undefined) buttonClassName += ' button--rounded'
+  if (text !== undefined) buttonClassName += ' button--text'
+  if (outlined !== undefined) buttonClassName += ' button--outlined'
 
   if (to !== undefined) {
     return (
@@ -58,6 +69,7 @@ const Button: React.FC<IButton> = ({
       className={buttonClassName}
       type={type}
       onClick={handleClick}
+      disabled={isDisabled}
     >
       <Content>
         {children}
