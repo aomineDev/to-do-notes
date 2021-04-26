@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 64px;
+  min-width: 100px;
   min-height: 36px;
   padding: {
     left: 16px;
@@ -21,6 +21,26 @@
   &:hover {
     background-color: darken($grey-lighten-2, 5%);
   }
+  &__content {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    pointer-events: none;
+  }
+  &__icon {
+    font-size: $font-size-md-1;
+  }
+  &__ripple {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: $grey-darken-4;
+    pointer-events: none;
+    animation: ripple .5s linear;
+    opacity: .5;
+  }
 
   // Colors
   @each $name, $color in $colors {
@@ -35,24 +55,14 @@
         &:hover {
           background-color: lighten($color, 5%);
         }
+        .button__ripple {
+          background-color: $white;
+        }
       }
     }
   }
 
   // Sizes
-  &--small {
-    min-width: 50px;
-    min-height: 28px;
-    padding: {
-      left: 12px;
-      right: 12px;
-    };
-    font-size: 12px;
-    & .button__icon {
-      font-size: 16px;
-    }
-  }
-
   &--x-small {
     min-width: 36px;
     min-height: 20px;
@@ -61,13 +71,26 @@
       right: 8px;
     };
     font-size: 10px;
-    & .button__icon {
-      font-size: 14px;
+    .button__icon {
+      font-size: 10px;
+    }
+  }
+
+  &--small {
+    min-width: 60px;
+    min-height: 28px;
+    padding: {
+      left: 12px;
+      right: 12px;
+    };
+    font-size: $font-size-sm-2;
+    .button__icon {
+      font-size: $font-size-sm-3;
     }
   }
 
   &--large {
-    min-width: 78px;
+    min-width: 120px;
     min-height: 44px;
     padding: {
       left: 20px;
@@ -76,15 +99,15 @@
   }
 
   &--x-large {
-    min-width: 92px;
+    min-width: 150px;
     min-height: 52px;
     padding: {
       left: 24px;
       right: 24px;
     };
-    font-size: 16px;
-    & .button__icon {
-      font-size: 20px;
+    font-size: $font-size-md-1;
+    .button__icon {
+      font-size: $font-size-md-2;
     }
   }
 
@@ -119,6 +142,10 @@
         &:hover {
           background-color: rgba($color, 0.1);
         }
+        .button__ripple {
+          background-color: $color;
+          opacity: .2;
+        }
       }
     }
   }
@@ -129,9 +156,58 @@
     border: 1px solid $grey-darken-4;
     @each $name, $color in $colors {
       &.button--#{$name} {
-        border: 1px solid $color;
+        border-color: $color;
+        &:hover {
+          background-color: rgba($color, 0.075);
+        }
       }
     }
+  }
+
+  // Is Icon & sizes
+  &--is-icon {
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    .button__icon {
+      font-size: $font-size-md-2;
+    }
+
+    &.button--x-small {
+      min-width: 32px;
+      min-height: 32px;
+      .button__icon {
+        font-size: $font-size-md-1;
+      }
+    }
+    &.button--small {
+      min-width: 40px;
+      min-height: 40px;
+    }
+    &.button--large {
+      min-width: 64px;
+      min-height: 64px;
+      .button__icon {
+        font-size: $font-size-md-3;
+      }
+    }
+    &.button--x-large {
+      min-width: 72px;
+      min-height: 72px;
+      .button__icon {
+        font-size: $font-size-lg-1;
+      }
+    }
+    &.button--outlined {
+      border-width: 2px;
+    }
+  }
+
+  // Loading
+  &--is-loading{
+    pointer-events: none;
+    transition-duration: 0s;
   }
 
   // Disabled
@@ -149,4 +225,12 @@
   &--outlined:disabled {
     border-color: $color-disabled;
   }
+}
+
+@keyframes ripple {
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+	}
 }

@@ -3,7 +3,7 @@
 .spinner {
   stroke-width: 2px;
   fill: transparent;
-  stroke: $color-primary;
+  stroke: $grey-darken-4;
   stroke-dasharray: 55;
   animation: spinner 2s infinite linear;
 
@@ -20,11 +20,10 @@
   }
 
   // Colors
-  &--dark {
-    stroke: $grey-darken-4;
-  }
-  &--light {
-    stroke: $white;
+  @each $name, $color in $colors {
+    &--#{$name} {
+      stroke: $color;
+    }
   }
 }
 

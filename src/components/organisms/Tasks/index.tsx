@@ -7,6 +7,7 @@ import Button from 'components/molecules/Button'
 import noTasks from 'assets/img/icons/tasks.svg'
 
 import './styles.scss'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 interface ITask {
   id: number
@@ -77,6 +78,7 @@ const Tasks: React.FC = () => {
             <Button
               handleClick={() => console.log('testing button')}
               color="primary"
+              icon={faPen}
               elevation
             >Testeando</Button>
           </div>

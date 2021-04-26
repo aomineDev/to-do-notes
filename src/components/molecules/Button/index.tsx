@@ -1,16 +1,12 @@
+import { useRef } from 'react'
+
 import { Link } from 'react-router-dom'
 
-import { IButton, IContent } from './types'
+import Content from './content'
+
+import { IButton, ClickEvent } from './types'
 
 import './styles.scss'
-
-const Content: React.FC<IContent> = ({
-  children
-}) => (
-   <>
-    {children}
-   </>
-)
 
 const Button: React.FC<IButton> = ({
   children,
@@ -19,14 +15,19 @@ const Button: React.FC<IButton> = ({
   href,
   color,
   size,
+  icon,
   block,
   elevation,
   rounded,
   text,
   outlined,
   isDisabled,
+  isLoading,
+  isIcon,
   handleClick
 }) => {
+  const buttonEl = useRef<HTMLButtonElement>(null)
+
   let buttonClassName = 'button'
 
   if (color !== undefined) buttonClassName += ` button--${color}`
@@ -37,6 +38,27 @@ const Button: React.FC<IButton> = ({
   if (rounded !== undefined) buttonClassName += ' button--rounded'
   if (text !== undefined) buttonClassName += ' button--text'
   if (outlined !== undefined) buttonClassName += ' button--outlined'
+  if (isIcon !== undefined) buttonClassName += ' button--is-icon'
+  if (isLoading !== undefined) buttonClassName += ' button--is-loading'
+
+  const rippleEffect = (e: ClickEvent): void => {
+    const ripple = document.createElement('span')
+
+    ripple.setAttribute('class', 'button__ripple')
+
+    ripple.style.top = `${e.nativeEvent.offsetY}px`
+    ripple.style.left = `${e.nativeEvent.offsetX}px`
+    buttonEl.current?.appendChild(ripple)
+
+    setTimeout(() => {
+      ripple.remove()
+    }, 600)
+  }
+
+  const handleClickWithEffect = (e: ClickEvent): void => {
+    if (handleClick !== undefined) handleClick()
+    rippleEffect(e)
+  }
 
   if (to !== undefined) {
     return (
@@ -44,7 +66,7 @@ const Button: React.FC<IButton> = ({
         to={to}
         className={buttonClassName}
       >
-        <Content>
+        <Content isIcon={isIcon} icon={icon}>
           {children}
         </Content>
       </Link>
@@ -57,7 +79,7 @@ const Button: React.FC<IButton> = ({
         href={href}
         className={buttonClassName}
       >
-        <Content>
+        <Content isIcon={isIcon} icon={icon}>
           {children}
         </Content>
       </a>
@@ -68,10 +90,19 @@ const Button: React.FC<IButton> = ({
     <button
       className={buttonClassName}
       type={type}
-      onClick={handleClick}
+      onClick={handleClickWithEffect}
       disabled={isDisabled}
+      ref={buttonEl}
     >
-      <Content>
+      <Content
+        isLoading={isLoading}
+        isIcon={isIcon}
+        icon={icon}
+        color={color}
+        size={size}
+        text={text}
+        outlined={outlined}
+      >
         {children}
       </Content>
     </button>

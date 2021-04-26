@@ -1,14 +1,8 @@
 import './styles.scss'
 
-type Size = 'small' | 'large' | 'medium'
-type Color = 'primary' | 'dark' | 'light'
+import { ISpinner } from './types'
 
-interface ISpinner {
-  size?: Size
-  color?: Color
-}
-
-const Spinner: React.FC<ISpinner> = ({ size = 'medium', color = 'primary' }) => {
+const Spinner: React.FC<ISpinner> = ({ size = 'medium', color }) => {
   let radio: number
   let coordinates: number
   let svgSize: number
@@ -30,7 +24,9 @@ const Spinner: React.FC<ISpinner> = ({ size = 'medium', color = 'primary' }) => 
       svgSize = 24
   }
 
-  const spinnerClassName = `spinner spinner--${size} spinner--${color}`
+  let spinnerClassName = `spinner spinner--${size}`
+
+  if (color !== undefined) spinnerClassName += ` spinner--${color}`
 
   return (
     <svg className={spinnerClassName} width={svgSize} height={svgSize}>
