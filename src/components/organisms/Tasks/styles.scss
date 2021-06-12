@@ -28,9 +28,29 @@
     }
   }
   
-  &__wrapper {
+  &__wrapper > div {
     display: grid;
     row-gap: 5px;   
     margin-top: 10px; 
+  }
+
+  &__transition-enter {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  &__transition-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition-property: transform, opacity;
+    transition-duration: 0.3s;
+  }
+  &__transition-exit {
+    opacity: 1;
+  }
+  &__transition-exit-active {
+    transform: translateX(20px);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 0.3s;
   }
 }

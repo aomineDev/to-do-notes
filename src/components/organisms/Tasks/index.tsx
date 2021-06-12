@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
@@ -44,7 +45,11 @@ const Tasks: React.FC = () => {
     setTasks(newTasks)
   }
 
-  const updateTask = (index: number, title: string, description: string): void => {
+  const updateTask = (
+    index: number,
+    title: string,
+    description: string
+  ): void => {
     const newTasks: ITask[] = [...tasks]
     const task: ITask = tasks[index]
 
@@ -68,21 +73,36 @@ const Tasks: React.FC = () => {
         </form>
         <div className="tasks__wrapper">
           {tasks.length === 0
-            ? <div className="tasks__not-found">
-                <img src={noTasks} alt="no tasks icon" className="tasks__not-found__img"/>
-                <p className="tasks__not-found__text">Tasks not found</p>
-              </div>
-            : tasks.map(({ id, title, description }: ITask, index: number) => (
-                <Task
-                  key={id}
-                  id={id}
-                  index={index}
-                  title={title}
-                  description={description}
-                  deleteTask={deleteTask}
-                  updateTask={updateTask}
-                />
-            ))
+            ? (
+            <div className="tasks__not-found">
+              <img
+                src={noTasks}
+                alt="no tasks icon"
+                className="tasks__not-found__img"
+              />
+              <p className="tasks__not-found__text">Tasks not found</p>
+            </div>
+              )
+            : (
+                <TransitionGroup>
+                  {tasks.map(({ id, title, description }: ITask, index: number) => (
+                    <CSSTransition
+                      key={id}
+                      timeout={300}
+                      classNames="tasks__transition"
+                    >
+                      <Task
+                        id={id}
+                        index={index}
+                        title={title}
+                        description={description}
+                        deleteTask={deleteTask}
+                        updateTask={updateTask}
+                      />
+                    </CSSTransition>
+                  ))}
+                </TransitionGroup>
+              )
           }
         </div>
       </div>
