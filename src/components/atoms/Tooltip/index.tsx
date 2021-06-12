@@ -8,7 +8,7 @@ interface ITooltip {
 }
 
 const Tooltip: React.FC<ITooltip> = ({ children, title, placement }) => {
-  const tooltipClassName = `tooltip tooltip--${placement}`
+  const tooltipClassName: string = `tooltip tooltip--${placement}`
 
   return (
     <div className="tooltip-ref">

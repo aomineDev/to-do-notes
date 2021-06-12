@@ -6,8 +6,6 @@ import { IContent } from './types'
 import { Size as SpinnerSize } from 'components/atoms/Spinner/types'
 import { Color } from 'types/color'
 
-import './styles.scss'
-
 const Content: React.FC<IContent> = ({
   isLoading = false,
   isIcon = false,

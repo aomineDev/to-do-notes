@@ -28,7 +28,7 @@ const Button: React.FC<IButton> = ({
 }) => {
   const buttonEl = useRef<HTMLButtonElement>(null)
 
-  let buttonClassName = 'button'
+  let buttonClassName: string = 'button'
 
   if (color !== undefined) buttonClassName += ` button--${color}`
   if (size !== undefined) buttonClassName += ` button--${size}`

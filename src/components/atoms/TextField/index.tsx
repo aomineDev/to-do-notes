@@ -1,20 +1,27 @@
 import './styles.scss'
 
 interface ITextField {
-  placeholder: string
+  placeholder?: string
+  label?: string
   value: string
   setValue: (val: string) => void
 }
 
-const TextField: React.FC<ITextField> = ({ value, setValue, placeholder }) => {
+const TextField: React.FC<ITextField> = ({ value, setValue, placeholder, label }) => {
+  const id: string = `${Date.now() + Math.random()}`
+
   return (
-    <input
-      type="text"
-      className="text-field"
-      placeholder={placeholder}
-      onChange={e => setValue(e.target.value)}
-      value={value}
-    />
+    <div className="text-field">
+      {label !== undefined && <label htmlFor={id} className="text-field__label">{label}</label>}
+      <input
+        type="text"
+        className="text-field__input"
+        id={id}
+        placeholder={placeholder}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+      />
+    </div>
   )
 }
 

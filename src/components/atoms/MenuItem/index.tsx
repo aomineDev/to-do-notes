@@ -16,7 +16,7 @@ const MenuItem: React.FC<IMenuItem> = ({
   title,
   isDanger = false
 }) => {
-  let menuItemClassName = 'menu-item'
+  let menuItemClassName: string = 'menu-item'
 
   if (isDanger) menuItemClassName += ' is-danger'
 

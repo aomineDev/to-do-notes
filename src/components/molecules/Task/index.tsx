@@ -6,6 +6,7 @@ import Menu from 'components/atoms/Menu'
 import MenuItem from 'components/atoms/MenuItem'
 import Modal from 'components/atoms/Modal'
 import Tooltip from 'components/atoms/Tooltip'
+import Form from './form'
 
 import './styles.scss'
 
@@ -16,14 +17,15 @@ interface ITask {
   index: number
   title: string
   description: string
+  updateTask: (index: number, title: string, description: string) => void
   deleteTask: (index: number) => void
 }
 
-const Task: React.FC<ITask> = ({ id, index, title, description, deleteTask }) => {
+const Task: React.FC<ITask> = ({ id, index, title, description, updateTask, deleteTask }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
-  let taskClassName = 'task'
+  let taskClassName: string = 'task'
   if (isChecked) taskClassName += ' is-completed'
 
   const handleChange = (e: ChangeEvent): void => {
@@ -91,8 +93,14 @@ const Task: React.FC<ITask> = ({ id, index, title, description, deleteTask }) =>
 
       {isModalOpen && (
         <Modal>
-          modal :D
-          <button onClick={closeModal}>close</button>
+          <Form
+            id={id}
+            index={index}
+            title={title}
+            description={description}
+            updateTask={updateTask}
+            closeModal={closeModal}
+          />
         </Modal>
       )}
     </>

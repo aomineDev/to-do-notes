@@ -10,9 +10,7 @@ const modalRoot = document.getElementById('modal-root') as HTMLElement
 const Modal: React.FC<IModal> = ({ children }) => {
   return (
     <div className="modal">
-      <div className="modal__body">
-        {children}
-      </div>
+      {children}
     </div>
   )
 }

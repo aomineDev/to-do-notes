@@ -30,7 +30,7 @@ const Menu: React.FC<IMenu> = ({ children, activator }) => {
     }
   }
 
-  let optionsClassName = 'menu'
+  let optionsClassName: string = 'menu'
 
   if (isOptionsVisible) optionsClassName += ' is-active'
 

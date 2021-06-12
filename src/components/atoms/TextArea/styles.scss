@@ -1,6 +1,6 @@
 @import 'assets/scss/styles.scss';
 
-.text-field {
+.text-area {
   &__label {
     display: block;
     margin-bottom: 5px;
@@ -24,6 +24,17 @@
     }
     &::placeholder {
       font-weight: 600;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, .2);
     }
   }
 }

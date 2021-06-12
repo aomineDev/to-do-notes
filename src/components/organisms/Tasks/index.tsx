@@ -2,12 +2,10 @@ import { useState } from 'react'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
-import Button from 'components/molecules/Button'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
 import './styles.scss'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 interface ITask {
   id: number
@@ -34,14 +32,25 @@ const Tasks: React.FC = () => {
       id: Date.now()
     }
 
-    setTasks(tasks.concat(newTask))
+    setTasks([newTask, ...tasks])
 
     setTitle('')
   }
 
   const deleteTask = (index: number): void => {
-    const newTasks = [...tasks]
+    const newTasks: ITask[] = [...tasks]
     newTasks.splice(index, 1)
+
+    setTasks(newTasks)
+  }
+
+  const updateTask = (index: number, title: string, description: string): void => {
+    const newTasks: ITask[] = [...tasks]
+    const task: ITask = tasks[index]
+
+    task.title = title
+    task.description = description
+    newTasks[index] = task
 
     setTasks(newTasks)
   }
@@ -71,17 +80,10 @@ const Tasks: React.FC = () => {
                   title={title}
                   description={description}
                   deleteTask={deleteTask}
+                  updateTask={updateTask}
                 />
             ))
           }
-          <div>
-            <Button
-              handleClick={() => console.log('testing button')}
-              color="primary"
-              icon={faPen}
-              elevation
-            >Testeando</Button>
-          </div>
         </div>
       </div>
     </>

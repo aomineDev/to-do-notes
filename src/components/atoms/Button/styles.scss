@@ -2,7 +2,7 @@
 
 .button {
   position: relative;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   min-width: 100px;
@@ -13,9 +13,10 @@
   }
   border-radius: $base-border-radius;
   background-color: $grey-lighten-2;
-  font-weight: 500;
-  font-size: $font-size-sm-3;
   color: $grey-darken-4;
+  font-weight: 600;
+  font-size: $font-size-sm-3;
+  text-transform: capitalize;
   transition-duration: .3s;
   overflow: hidden;
   &:hover {
