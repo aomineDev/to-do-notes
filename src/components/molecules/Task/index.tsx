@@ -91,18 +91,16 @@ const Task: React.FC<ITask> = ({ id, index, title, description, updateTask, dele
         </div>
       </div>
 
-      {isModalOpen && (
-        <Modal>
-          <Form
-            id={id}
-            index={index}
-            title={title}
-            description={description}
-            updateTask={updateTask}
-            closeModal={closeModal}
-          />
-        </Modal>
-      )}
+      <Modal isModalOpen={isModalOpen}>
+        <Form
+          id={id}
+          index={index}
+          title={title}
+          description={description}
+          updateTask={updateTask}
+          closeModal={closeModal}
+        />
+      </Modal>
     </>
   )
 }

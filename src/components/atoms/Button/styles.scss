@@ -22,6 +22,7 @@
   &:hover {
     background-color: darken($grey-lighten-2, 5%);
   }
+
   &__content {
     display: flex;
     align-items: center;
@@ -47,6 +48,10 @@
   @each $name, $color in $colors {
     &--#{$name} {
       background-color: $color;
+      &:focus {
+        box-shadow: 0 0 0 2px rgba($color, .6);
+      }
+      
       @if $color == $yellow or $color == $white or $color == $light {
         &:hover {
           background-color: darken($color, 5%);

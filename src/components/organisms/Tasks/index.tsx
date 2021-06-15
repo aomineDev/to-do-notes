@@ -72,8 +72,27 @@ const Tasks: React.FC = () => {
           />
         </form>
         <div className="tasks__wrapper">
-          {tasks.length === 0
-            ? (
+          <TransitionGroup>
+            {tasks.map(({ id, title, description }: ITask, index: number) => (
+              <CSSTransition
+                key={id}
+                timeout={600}
+                classNames="tasks__transition"
+              >
+                <Task
+                  id={id}
+                  index={index}
+                  title={title}
+                  description={description}
+                  deleteTask={deleteTask}
+                  updateTask={updateTask}
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+
+          {tasks.length === 0 &&
+            (
             <div className="tasks__not-found">
               <img
                 src={noTasks}
@@ -82,27 +101,7 @@ const Tasks: React.FC = () => {
               />
               <p className="tasks__not-found__text">Tasks not found</p>
             </div>
-              )
-            : (
-                <TransitionGroup>
-                  {tasks.map(({ id, title, description }: ITask, index: number) => (
-                    <CSSTransition
-                      key={id}
-                      timeout={300}
-                      classNames="tasks__transition"
-                    >
-                      <Task
-                        id={id}
-                        index={index}
-                        title={title}
-                        description={description}
-                        deleteTask={deleteTask}
-                        updateTask={updateTask}
-                      />
-                    </CSSTransition>
-                  ))}
-                </TransitionGroup>
-              )
+            )
           }
         </div>
       </div>
