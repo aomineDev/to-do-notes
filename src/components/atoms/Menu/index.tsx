@@ -4,7 +4,7 @@ import './styles.scss'
 
 type BtnEl = HTMLButtonElement
 
-interface IMenu {
+interface IMenuProps {
   activator: (
     handleClick: () => void,
     handleBlur: () => void,
@@ -12,7 +12,7 @@ interface IMenu {
   ) => void
 }
 
-const Menu: React.FC<IMenu> = ({ children, activator }) => {
+const Menu: React.FC<IMenuProps> = ({ children, activator }) => {
   const [isOptionsVisible, setIsOptionsVisible] = useState<boolean>(false)
 
   const refEl = useRef<BtnEl>(null)

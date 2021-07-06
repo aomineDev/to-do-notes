@@ -2,12 +2,12 @@ import './styles.scss'
 
 type Placement = 'top' | 'right' | 'left' | 'bottom'
 
-interface ITooltip {
+interface ITooltipProps {
   title: string
   placement: Placement
 }
 
-const Tooltip: React.FC<ITooltip> = ({ children, title, placement }) => {
+const Tooltip: React.FC<ITooltipProps> = ({ children, title, placement }) => {
   const tooltipClassName: string = `tooltip tooltip--${placement}`
 
   return (

@@ -1,13 +1,13 @@
 import './styles.scss'
 
-interface ITextArea {
+interface ITextAreaProps {
   placeholder?: string
   label?: string
   value: string
   setValue: (val: string) => void
 }
 
-const textArea: React.FC<ITextArea> = ({ label, placeholder, value, setValue }) => {
+const textArea: React.FC<ITextAreaProps> = ({ label, placeholder, value, setValue }) => {
   const id: string = `${Date.now() + Math.random()}`
 
   return (

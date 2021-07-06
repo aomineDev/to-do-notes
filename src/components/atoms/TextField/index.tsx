@@ -1,13 +1,13 @@
 import './styles.scss'
 
-interface ITextField {
+interface ITextFieldProps {
   placeholder?: string
   label?: string
   value: string
   setValue: (val: string) => void
 }
 
-const TextField: React.FC<ITextField> = ({ value, setValue, placeholder, label }) => {
+const TextField: React.FC<ITextFieldProps> = ({ value, setValue, placeholder, label }) => {
   const id: string = `${Date.now() + Math.random()}`
 
   return (

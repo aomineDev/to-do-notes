@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './styles.scss'
 
-interface IMenuItem {
+interface IMenuItemProps {
   handleClick: () => void
   icon?: IconDefinition
   title: string
   isDanger?: boolean
 }
 
-const MenuItem: React.FC<IMenuItem> = ({
+const MenuItem: React.FC<IMenuItemProps> = ({
   handleClick,
   icon,
   title,

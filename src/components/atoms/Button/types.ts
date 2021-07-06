@@ -8,7 +8,7 @@ export type Size = 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
 
 export type ClickEvent = React.MouseEvent<HTMLButtonElement>
 
-export interface IButton {
+export interface IButtonProps {
   type?: Type
   to?: string
   href?: string
@@ -26,7 +26,7 @@ export interface IButton {
   handleClick?: () => void
 }
 
-export interface IContent {
+export interface IContentProps {
   isLoading?: boolean
   isIcon?: boolean
   icon?: IconDefinition

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 import Content from './content'
 
-import { IButton, ClickEvent } from './types'
+import { IButtonProps, ClickEvent } from './types'
 
 import './styles.scss'
 
-const Button: React.FC<IButton> = ({
+const Button: React.FC<IButtonProps> = ({
   children,
   type = 'button',
   to,

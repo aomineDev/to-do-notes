@@ -1,4 +1,4 @@
-# To DO note App
+# To DO notes App
 
 ## Sass Setup
 

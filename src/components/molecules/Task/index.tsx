@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
+import { useTask } from 'context/task'
+
 import Menu from 'components/atoms/Menu'
 import MenuItem from 'components/atoms/MenuItem'
 import Modal from 'components/atoms/Modal'
@@ -12,16 +14,16 @@ import './styles.scss'
 
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>
 
-interface ITask {
+interface ITaskProps {
   id: number
   index: number
   title: string
   description: string
-  updateTask: (index: number, title: string, description: string) => void
-  deleteTask: (index: number) => void
 }
 
-const Task: React.FC<ITask> = ({ id, index, title, description, updateTask, deleteTask }) => {
+const Task: React.FC<ITaskProps> = ({ id, index, title, description }) => {
+  const { dispatch } = useTask()
+
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
@@ -33,7 +35,7 @@ const Task: React.FC<ITask> = ({ id, index, title, description, updateTask, dele
   }
 
   const handleDeleteTask = (): void => {
-    deleteTask(index)
+    dispatch({ type: 'remove', payload: index })
   }
 
   const handleEditTask = (): void => {
@@ -97,7 +99,6 @@ const Task: React.FC<ITask> = ({ id, index, title, description, updateTask, dele
           index={index}
           title={title}
           description={description}
-          updateTask={updateTask}
           closeModal={closeModal}
         />
       </Modal>

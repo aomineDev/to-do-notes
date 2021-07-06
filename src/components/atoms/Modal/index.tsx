@@ -4,14 +4,14 @@ import { CSSTransition } from 'react-transition-group'
 
 import './styles.scss'
 
-interface IModal {
+interface IModalProps {
   isModalOpen: boolean
   closeModal?: () => void
 }
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement
 
-const Modal: React.FC<IModal> = ({ children, isModalOpen }) => {
+const Modal: React.FC<IModalProps> = ({ children, isModalOpen }) => {
   const [transitionModal, setTransitionModal] = useState<boolean>(false)
 
   let modalBodyClassName: string = 'modal__body'
@@ -41,7 +41,7 @@ const Modal: React.FC<IModal> = ({ children, isModalOpen }) => {
   )
 }
 
-const ModalPortal: React.FC<IModal> = ({ children, closeModal, isModalOpen }) => {
+const ModalPortal: React.FC<IModalProps> = ({ children, closeModal, isModalOpen }) => {
   return createPortal(
     <Modal closeModal={closeModal} isModalOpen={isModalOpen}>{children}</Modal>,
     modalRoot

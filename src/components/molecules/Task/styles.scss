@@ -130,8 +130,7 @@
       text-transform: uppercase;
     }
     &__inputs {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       row-gap: 20px;
     }
     &__buttons {

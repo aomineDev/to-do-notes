@@ -1,29 +1,31 @@
 import { useState } from 'react'
 
+import { useTask } from 'context/task'
+
 import TextField from 'components/atoms/TextField'
 import TextArea from 'components/atoms/TextArea'
 import Button from 'components/atoms/Button'
 
 type SubmitEvent = React.FormEvent<HTMLFormElement>
 
-interface IForm {
+interface IFormProps {
   id: number
   index: number
   title: string
   description: string
-  updateTask: (index: number, title: string, description: string) => void
   closeModal: () => void
 }
 
-const Form: React.FC<IForm> = ({ index, title, description, updateTask, closeModal }) => {
+const Form: React.FC<IFormProps> = ({ index, title, description, closeModal }) => {
+  const { dispatch } = useTask()
+
   const [newTitle, setNewtitle] = useState<string>(title)
   const [newDescription, setNewDescription] = useState<string>(description)
 
   const handleSubmit = (e: SubmitEvent): void => {
     e.preventDefault()
 
-    updateTask(index, newTitle, newDescription)
-
+    dispatch({ type: 'update', payload: { index, title: newTitle, description: newDescription } })
     closeModal()
   }
 

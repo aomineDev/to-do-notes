@@ -1,8 +1,8 @@
 import './styles.scss'
 
-import { ISpinner } from './types'
+import { ISpinnerProps } from './types'
 
-const Spinner: React.FC<ISpinner> = ({ size = 'medium', color }) => {
+const Spinner: React.FC<ISpinnerProps> = ({ size = 'medium', color }) => {
   let radio: number
   let coordinates: number
   let svgSize: number
