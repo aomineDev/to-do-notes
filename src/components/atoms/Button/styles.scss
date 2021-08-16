@@ -49,7 +49,7 @@
     &--#{$name} {
       background-color: $color;
       &:focus {
-        box-shadow: 0 0 0 2px rgba($color, .6);
+        box-shadow: 0 0 0 1px rgba($color, .6);
       }
       
       @if $color == $yellow or $color == $white or $color == $light {

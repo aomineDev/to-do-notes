@@ -6,17 +6,21 @@ import TextField from 'components/atoms/TextField'
 import TextArea from 'components/atoms/TextArea'
 import Button from 'components/atoms/Button'
 
+import { ITask } from 'types/task'
+
+import './styles.scss'
+
 type SubmitEvent = React.FormEvent<HTMLFormElement>
 
 interface IFormProps {
-  id: number
-  index: number
-  title: string
-  description: string
+  isEditing?: boolean
+  id?: number
+  title?: string
+  description?: string
   closeModal: () => void
 }
 
-const Form: React.FC<IFormProps> = ({ index, title, description, closeModal }) => {
+const Form: React.FC<IFormProps> = ({ isEditing = false, id = 0, title = '', description = '', closeModal }) => {
   const { dispatch } = useTask()
 
   const [newTitle, setNewtitle] = useState<string>(title)
@@ -25,13 +29,34 @@ const Form: React.FC<IFormProps> = ({ index, title, description, closeModal }) =
   const handleSubmit = (e: SubmitEvent): void => {
     e.preventDefault()
 
-    dispatch({ type: 'update', payload: { index, title: newTitle, description: newDescription } })
+    if (newTitle === '') return
+
+    if (isEditing) {
+      dispatch({
+        type: 'update',
+        payload: {
+          id,
+          title: newTitle,
+          description: newDescription
+        }
+      })
+    } else {
+      const newTask: ITask = {
+        title: newTitle,
+        description: newDescription,
+        status: false,
+        id: Date.now()
+      }
+
+      dispatch({ type: 'add', payload: newTask })
+    }
+
     closeModal()
   }
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
-      <h3 className="task-form__title">Update Task</h3>
+      <h3 className="task-form__title">{isEditing ? 'Update' : 'Add a'} Task</h3>
       <div className="task-form__inputs">
         <TextField
           value={newTitle}
@@ -56,7 +81,7 @@ const Form: React.FC<IFormProps> = ({ index, title, description, closeModal }) =
           color="primary"
           type="submit"
         >
-          save
+          {isEditing ? 'save' : 'create'}
         </Button>
      </div>
     </form>

@@ -1,0 +1,21 @@
+@import 'assets/scss/styles.scss';
+
+.floating-button {
+  position: fixed;
+  &__top-left {
+    top: 20px;
+    left: 20px;
+  } 
+  &__top-right {
+    top: 20px;
+    right: 20px;
+  } 
+  &__bottom-left {
+    bottom: 20px;
+    left: 20px;
+  } 
+  &__bottom-right {
+    bottom: 20px;
+    right: 20px;
+  }
+}

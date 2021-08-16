@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import { useTask } from 'context/task'
@@ -7,6 +7,7 @@ import { ITask } from 'types/task'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
+import Button from 'components/atoms/Button'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
@@ -14,9 +15,35 @@ import './styles.scss'
 
 type FormEvent = React.FormEvent<HTMLFormElement>
 
+type filterStates = 'inProgress' | 'completed' | 'all'
+
 const Tasks: React.FC = () => {
   const { state: tasks, dispatch } = useTask()
+
   const [title, setTitle] = useState<string>('')
+  const [filteredTasks, setFilteredTasks] = useState<ITask[]>(() => tasks.filter(({ status }) => !status))
+  const [filterState, setFilterState] = useState<filterStates>('inProgress')
+
+  useEffect(() => {
+    if (filterState === 'inProgress') handleShowInProgress()
+    else if (filterState === 'completed') handleShowCompleted()
+    else if (filterState === 'all') handleShowAll()
+  }, [tasks])
+
+  const handleShowInProgress = (): void => {
+    setFilteredTasks(tasks.filter(({ status }) => !status))
+    setFilterState('inProgress')
+  }
+
+  const handleShowCompleted = (): void => {
+    setFilteredTasks(tasks.filter(({ status }) => status))
+    setFilterState('completed')
+  }
+
+  const handleShowAll = (): void => {
+    setFilteredTasks([...tasks])
+    setFilterState('all')
+  }
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault()
@@ -36,9 +63,40 @@ const Tasks: React.FC = () => {
   }
 
   return (
-    <>
-      <h2 className="tasks__title">Tasks</h2>
-      <div className="tasks">
+    <div className="tasks">
+      <h2 className="tasks__title">Tasks - {filteredTasks.length}</h2>
+
+      <div className="tasks__status">
+        <Button
+          handleClick={handleShowInProgress}
+          size='small'
+          rounded
+          text={filterState !== 'inProgress'}
+          color="primary"
+        >
+          in progress
+        </Button>
+        <Button
+          handleClick={handleShowCompleted}
+          size='small'
+          rounded
+          text={filterState !== 'completed'}
+          color="primary"
+        >
+          completed
+        </Button>
+        <Button
+          handleClick={handleShowAll}
+          size='small'
+          rounded
+          text={filterState !== 'all'}
+          color="primary"
+        >
+          all
+        </Button>
+      </div>
+
+      <div className="tasks__body">
         <form onSubmit={handleSubmit}>
           <TextField
             placeholder="Add a Task"
@@ -48,7 +106,7 @@ const Tasks: React.FC = () => {
         </form>
         <div className="tasks__wrapper">
           <TransitionGroup>
-            {tasks.map(({ id, title, description }: ITask, index: number) => (
+            {filteredTasks.map(({ id, title, description, status }: ITask) => (
               <CSSTransition
                 key={id}
                 timeout={300}
@@ -56,15 +114,15 @@ const Tasks: React.FC = () => {
               >
                 <Task
                   id={id}
-                  index={index}
                   title={title}
                   description={description}
+                  status={status}
                 />
               </CSSTransition>
             ))}
           </TransitionGroup>
 
-          {tasks.length === 0 &&
+          {filteredTasks.length === 0 &&
             (
               <div className="tasks__not-found">
                 <img
@@ -78,7 +136,7 @@ const Tasks: React.FC = () => {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

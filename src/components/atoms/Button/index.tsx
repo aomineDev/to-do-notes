@@ -33,13 +33,13 @@ const Button: React.FC<IButtonProps> = ({
   if (color !== undefined) buttonClassName += ` button--${color}`
   if (size !== undefined) buttonClassName += ` button--${size}`
 
-  if (block !== undefined) buttonClassName += ' button--block'
-  if (elevation !== undefined) buttonClassName += ' button--elevation'
-  if (rounded !== undefined) buttonClassName += ' button--rounded'
-  if (text !== undefined) buttonClassName += ' button--text'
-  if (outlined !== undefined) buttonClassName += ' button--outlined'
-  if (isIcon !== undefined) buttonClassName += ' button--is-icon'
-  if (isLoading !== undefined) buttonClassName += ' button--is-loading'
+  if (block === true) buttonClassName += ' button--block'
+  if (elevation === true) buttonClassName += ' button--elevation'
+  if (rounded === true) buttonClassName += ' button--rounded'
+  if (text === true) buttonClassName += ' button--text'
+  if (outlined === true) buttonClassName += ' button--outlined'
+  if (isIcon === true) buttonClassName += ' button--is-icon'
+  if (isLoading === true) buttonClassName += ' button--is-loading'
 
   const rippleEffect = (e: ClickEvent): void => {
     const ripple = document.createElement('span')

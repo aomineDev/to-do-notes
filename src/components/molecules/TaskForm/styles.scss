@@ -1,0 +1,33 @@
+@import 'assets/scss/styles.scss';
+
+.task-form {
+  background-color: $color-grey;
+  border-radius: $base-border-radius;
+  width: 500px;
+  padding: $app-padding-sm;
+  @include mobile($bp-sm-2) {
+    padding: $app-padding-md;
+  }
+  @include desktop($bp-sm-1) {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-size: $font-size-md-2;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  &__inputs {
+    display: grid;
+    row-gap: 20px;
+  }
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    column-gap: 10px;
+    justify-content: flex-end;
+  }
+}

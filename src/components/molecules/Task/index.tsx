@@ -8,34 +8,33 @@ import Menu from 'components/atoms/Menu'
 import MenuItem from 'components/atoms/MenuItem'
 import Modal from 'components/atoms/Modal'
 import Tooltip from 'components/atoms/Tooltip'
-import Form from './form'
+import Form from 'components/molecules/TaskForm'
 
 import './styles.scss'
 
-type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+// type ChangeEvent = React.ChangeEvent<HTMLInputElement>
 
 interface ITaskProps {
   id: number
-  index: number
   title: string
   description: string
+  status: boolean
 }
 
-const Task: React.FC<ITaskProps> = ({ id, index, title, description }) => {
+const Task: React.FC<ITaskProps> = ({ id, title, description, status }) => {
   const { dispatch } = useTask()
 
-  const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   let taskClassName: string = 'task'
-  if (isChecked) taskClassName += ' is-completed'
+  if (status) taskClassName += ' is-completed'
 
-  const handleChange = (e: ChangeEvent): void => {
-    setIsChecked(e.target.checked)
+  const handleChange = (): void => {
+    dispatch({ type: 'check', payload: id })
   }
 
   const handleDeleteTask = (): void => {
-    dispatch({ type: 'remove', payload: index })
+    dispatch({ type: 'remove', payload: id })
   }
 
   const handleEditTask = (): void => {
@@ -53,7 +52,7 @@ const Task: React.FC<ITaskProps> = ({ id, index, title, description }) => {
           <input
             type="checkbox"
             id={`task-${id}]`}
-            checked={isChecked}
+            checked={status}
             onChange={handleChange}
             className="task__input"
           />
@@ -95,8 +94,8 @@ const Task: React.FC<ITaskProps> = ({ id, index, title, description }) => {
 
       <Modal isModalOpen={isModalOpen}>
         <Form
+          isEditing={true}
           id={id}
-          index={index}
           title={title}
           description={description}
           closeModal={closeModal}
