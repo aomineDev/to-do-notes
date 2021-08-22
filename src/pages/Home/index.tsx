@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import Modal from 'components/atoms/Modal'
-import FloatingButton from 'components/atoms/FloatingButton'
+import Button from 'components/atoms/Button'
 import Form from 'components/molecules/TaskForm'
 import Tasks from 'components/organisms/Tasks'
+import Tooltip from 'components/atoms/Tooltip'
 
 import './styles.scss'
 
@@ -25,12 +26,18 @@ const Home: React.FC = () => {
       <div className="Home">
         <Tasks />
       </div>
-
-      <FloatingButton
-        handleClick={handleClick}
-        icon={faPlus}
-        color='primary'
-      />
+      <div className="Home__float-button">
+        <Tooltip title="create a task" placement="left">
+          <Button
+            color='primary'
+            icon={faPlus}
+            isIcon
+            rounded
+            elevation
+            handleClick={handleClick}
+          />
+        </Tooltip>
+      </div>
 
       <Modal isModalOpen={isModalOpen}>
         <Form closeModal={closeModal} />

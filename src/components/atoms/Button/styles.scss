@@ -59,7 +59,7 @@
       } @else {
         color: $white;
         &:hover {
-          background-color: lighten($color, 5%);
+          background-color: lighten($color, 3%);
         }
         .button__ripple {
           background-color: $white;

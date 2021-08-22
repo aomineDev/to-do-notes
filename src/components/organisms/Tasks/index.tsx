@@ -109,7 +109,7 @@ const Tasks: React.FC = () => {
             {filteredTasks.map(({ id, title, description, status }: ITask) => (
               <CSSTransition
                 key={id}
-                timeout={300}
+                timeout={250}
                 classNames="tasks__transition"
               >
                 <Task
