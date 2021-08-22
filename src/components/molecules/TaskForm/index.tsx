@@ -56,7 +56,7 @@ const Form: React.FC<IFormProps> = ({ isEditing = false, id = 0, title = '', des
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
-      <h3 className="task-form__title">{isEditing ? 'Update' : 'Add a'} Task</h3>
+      <h3 className="task-form__title">{isEditing ? 'Edit' : 'Add a'} Task</h3>
       <div className="task-form__inputs">
         <TextField
           value={newTitle}
