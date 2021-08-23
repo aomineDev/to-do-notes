@@ -20,7 +20,6 @@ body {
   }
 }
 button,
-a,
-input[type="checkbox"] {
+a {
 	@extend %tap-highlight;
 }

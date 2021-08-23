@@ -1,6 +1,7 @@
 @import 'assets/scss/styles.scss';
 
 .menu-item {
+  @extend %tap-highlight;
   cursor: pointer;
   min-width: 150px;
   padding: {

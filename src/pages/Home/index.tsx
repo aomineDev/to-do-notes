@@ -23,10 +23,10 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="Home">
+      <div className="home">
         <Tasks />
       </div>
-      <div className="Home__float-button">
+      <div className="home__float-button">
         <Tooltip title="create a task" placement="left">
           <Button
             color='primary'

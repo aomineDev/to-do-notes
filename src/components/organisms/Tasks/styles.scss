@@ -1,21 +1,26 @@
 @import 'assets/scss/styles.scss';
 
 .tasks {
+  width: 300px;
   &__title {
     font-weight: 600;
     font-size: $font-size-md-2;
     margin-bottom: 10px;
   }
   &__status {
-    display: flex;
-    column-gap: 5px;
     margin-bottom: 10px;
   }
   &__body {
-    width: 300px;
     padding: 8px;
     border-radius: $base-border-radius;
     background-color: $grey-lighten-3;
+  }
+  &__form {
+    margin-bottom: 10px; 
+  }
+  &__wrapper > div {
+    display: grid;
+    row-gap: 5px;   
   }
   &__not-found {
     display: grid;
@@ -32,11 +37,6 @@
     &__text {
       color: $color-label;
     }
-  }
-  &__wrapper > div {
-    display: grid;
-    row-gap: 5px;   
-    margin-top: 10px; 
   }
 
   // Transition

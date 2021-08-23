@@ -94,9 +94,11 @@
     height: 24px;
     background-color: transparent;
     border-radius: 50%;
-    opacity: 0;
-    visibility: hidden;
     transition: .3s;
+    @include mobile($bp-sm-1) {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
   &:hover &__doots,
   &__doots:focus {

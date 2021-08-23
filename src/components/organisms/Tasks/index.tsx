@@ -7,7 +7,8 @@ import { ITask } from 'types/task'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
-import Button from 'components/atoms/Button'
+import ChipGroup from 'components/atoms/ChipGroup'
+import Chip from 'components/atoms/Chip'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
@@ -17,6 +18,8 @@ type FormEvent = React.FormEvent<HTMLFormElement>
 
 type filterStates = 'inProgress' | 'completed' | 'all'
 
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+
 const Tasks: React.FC = () => {
   const { state: tasks, dispatch } = useTask()
 
@@ -25,10 +28,12 @@ const Tasks: React.FC = () => {
   const [filterState, setFilterState] = useState<filterStates>('inProgress')
 
   useEffect(() => {
-    if (filterState === 'inProgress') handleShowInProgress()
-    else if (filterState === 'completed') handleShowCompleted()
-    else if (filterState === 'all') handleShowAll()
+    switchStatus(filterState)
   }, [tasks])
+
+  const handleOnStatusChange = (e: ChangeEvent): void => {
+    switchStatus(e.target.value)
+  }
 
   const handleShowInProgress = (): void => {
     setFilteredTasks(tasks.filter(({ status }) => !status))
@@ -43,6 +48,12 @@ const Tasks: React.FC = () => {
   const handleShowAll = (): void => {
     setFilteredTasks([...tasks])
     setFilterState('all')
+  }
+
+  const switchStatus = (value: string): void => {
+    if (value === 'inProgress') handleShowInProgress()
+    else if (value === 'completed') handleShowCompleted()
+    else if (value === 'all') handleShowAll()
   }
 
   const handleSubmit = (e: FormEvent): void => {
@@ -67,37 +78,33 @@ const Tasks: React.FC = () => {
       <h2 className="tasks__title">Tasks - {filteredTasks.length}</h2>
 
       <div className="tasks__status">
-        <Button
-          handleClick={handleShowInProgress}
-          size='small'
-          rounded
-          text={filterState !== 'inProgress'}
-          color="primary"
-        >
-          in progress
-        </Button>
-        <Button
-          handleClick={handleShowCompleted}
-          size='small'
-          rounded
-          text={filterState !== 'completed'}
-          color="primary"
-        >
-          completed
-        </Button>
-        <Button
-          handleClick={handleShowAll}
-          size='small'
-          rounded
-          text={filterState !== 'all'}
-          color="primary"
-        >
-          all
-        </Button>
+        <ChipGroup>
+          <Chip
+            name="task-status"
+            label="in progress"
+            value="inProgress"
+            stateValue={filterState}
+            onChange={handleOnStatusChange}
+          />
+          <Chip
+            name="task-status"
+            label="completed"
+            value="completed"
+            stateValue={filterState}
+            onChange={handleOnStatusChange}
+          />
+          <Chip
+            name="task-status"
+            label="all"
+            value="all"
+            stateValue={filterState}
+            onChange={handleOnStatusChange}
+          />
+        </ChipGroup>
       </div>
 
       <div className="tasks__body">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="tasks__form">
           <TextField
             placeholder="Add a Task"
             setValue={setTitle}

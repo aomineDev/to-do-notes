@@ -1,6 +1,10 @@
-const ChipGroup: React.FC = () => {
+import './styles.scss'
+
+const ChipGroup: React.FC = ({ children }) => {
   return (
-    <div></div>
+    <div className='chip-group'>
+      {children}
+    </div>
   )
 }
 
