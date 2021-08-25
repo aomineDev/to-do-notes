@@ -2,13 +2,26 @@
 
 .tasks {
   width: 300px;
-  &__title {
-    font-weight: 600;
-    font-size: $font-size-md-2;
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
-  &__status {
-    margin-bottom: 10px;
+  &__title {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: $font-size-md-2;
+    &--length {
+      display: inline-block;
+      font-size: $font-size-sm-2;
+      background-color: $color-primary;
+      color: $white;
+      padding: 2px 12px;
+      margin-left: 5px;
+      border-radius: 12px;
+    }
   }
   &__body {
     padding: 8px;

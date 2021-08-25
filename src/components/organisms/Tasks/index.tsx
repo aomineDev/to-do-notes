@@ -7,8 +7,8 @@ import { ITask } from 'types/task'
 
 import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
-import ChipGroup from 'components/atoms/ChipGroup'
-import Chip from 'components/atoms/Chip'
+import RadioGroup from 'components/atoms/RadioGroup'
+import Radio from 'components/atoms/Radio'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
@@ -75,32 +75,37 @@ const Tasks: React.FC = () => {
 
   return (
     <div className="tasks">
-      <h2 className="tasks__title">Tasks - {filteredTasks.length}</h2>
+      <div className="tasks__head">
+        <h2 className="tasks__title">Tasks<span className="tasks__title--length">{filteredTasks.length}</span></h2>
 
-      <div className="tasks__status">
-        <ChipGroup>
-          <Chip
-            name="task-status"
-            label="in progress"
-            value="inProgress"
-            stateValue={filterState}
-            onChange={handleOnStatusChange}
-          />
-          <Chip
-            name="task-status"
-            label="completed"
-            value="completed"
-            stateValue={filterState}
-            onChange={handleOnStatusChange}
-          />
-          <Chip
-            name="task-status"
-            label="all"
-            value="all"
-            stateValue={filterState}
-            onChange={handleOnStatusChange}
-          />
-        </ChipGroup>
+        <div className="tasks__status">
+          <RadioGroup>
+            <Radio
+              name="task-status"
+              label="in progress"
+              value="inProgress"
+              style="tab"
+              stateValue={filterState}
+              onChange={handleOnStatusChange}
+            />
+            <Radio
+              name="task-status"
+              label="completed"
+              value="completed"
+              style="tab"
+              stateValue={filterState}
+              onChange={handleOnStatusChange}
+            />
+            <Radio
+              name="task-status"
+              label="all"
+              value="all"
+              style="tab"
+              stateValue={filterState}
+              onChange={handleOnStatusChange}
+            />
+          </RadioGroup>
+        </div>
       </div>
 
       <div className="tasks__body">

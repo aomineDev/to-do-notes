@@ -1,24 +1,32 @@
 import './styles.scss'
 
-interface IChipProps {
+interface IRadioProps {
   name: string
   label: string
   value: string
   stateValue: string
+  style?: RadioStyle
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Chip: React.FC<IChipProps> = ({
+type RadioStyle = 'chip' | 'tab'
+
+const Radio: React.FC<IRadioProps> = ({
   name,
   label,
   value,
   stateValue,
+  style = 'chip',
   onChange
 }) => {
   const id: string = `${value}-${Math.random()}`
+  let radioClassName = 'radio'
+
+  if (style === 'tab') radioClassName += ' radio--tab'
+  else radioClassName += ' radio--chip'
 
   return (
-    <div className="chip">
+    <div className={radioClassName}>
       <input
         type="radio"
         name={name}
@@ -26,11 +34,11 @@ const Chip: React.FC<IChipProps> = ({
         value={value}
         checked={stateValue === value}
         onChange={onChange}
-        className="chip__input"
+        className="radio__input"
       />
-      <label htmlFor={id} className="chip__label">{label}</label>
+      <label htmlFor={id} className="radio__label">{label}</label>
     </div>
   )
 }
 
-export default Chip
+export default Radio

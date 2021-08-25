@@ -1,0 +1,56 @@
+@import 'assets/scss/styles.scss';
+
+.radio {
+  &__input {
+    display: none;
+  }
+  &__label {
+    @extend %tap-highlight;
+    display: inline-flex;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: $font-size-sm-2;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition-duration: .3s;
+  }
+
+  &--chip &__label {
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    min-height: 28px;
+    padding: {
+      left: 12px;
+      right: 12px;
+    };
+    border-radius: 14px;
+    color: $color-primary;
+    transition-property: color, background-color;
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+    }
+  }
+  &--chip &__input:checked + &__label {
+    color: $white;
+    background-color: $color-primary;
+    &:hover {
+      background-color: lighten($color-primary, 3%);
+    }
+  }
+
+  &--tab &__label {
+    padding: {
+      bottom: 2px;
+    };
+    border-bottom: 2px solid transparent;
+    transition-property: color, border-bottom;
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  &--tab &__input:checked + &__label {
+    color: $color-primary;
+    border-bottom: 2px solid $color-primary;
+  }
+}
