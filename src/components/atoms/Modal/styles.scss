@@ -37,5 +37,17 @@
       transform: scale(1);
       transition-delay: -0.1s;
     }
+    &--mobile-full-size {
+      @include desktop($bp-sm-1) {
+        width: 100% !important;
+        height: 100% !important;
+        transform: translateY(100%);
+      }
+    }
+    &--mobile-full-size#{&}--active {
+      @include desktop($bp-sm-1) {
+        transform: translateY(0);
+      }
+    }
   }
 }

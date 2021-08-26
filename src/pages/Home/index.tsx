@@ -39,7 +39,7 @@ const Home: React.FC = () => {
         </Tooltip>
       </div>
 
-      <Modal isModalOpen={isModalOpen}>
+      <Modal isModalOpen={isModalOpen} width="500px" mobileFullSize>
         <Form closeModal={closeModal} />
       </Modal>
     </>

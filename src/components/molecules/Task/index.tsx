@@ -12,8 +12,6 @@ import Form from 'components/molecules/TaskForm'
 
 import './styles.scss'
 
-// type ChangeEvent = React.ChangeEvent<HTMLInputElement>
-
 interface ITaskProps {
   id: number
   title: string
@@ -92,7 +90,7 @@ const Task: React.FC<ITaskProps> = ({ id, title, description, status }) => {
         </div>
       </div>
 
-      <Modal isModalOpen={isModalOpen}>
+      <Modal isModalOpen={isModalOpen} width="500px" mobileFullSize>
         <Form
           isEditing={true}
           id={id}
