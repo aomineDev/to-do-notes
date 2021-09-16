@@ -72,7 +72,7 @@ const Form: React.FC<IFormProps> = ({ isEditing = false, id = 0, title = '', des
      <div className="task-form__buttons">
         <Button
           handleClick={closeModal}
-          color="danger"
+          color="red"
           text
         >
           cancel
