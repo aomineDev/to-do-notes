@@ -34,23 +34,23 @@ const Modal: React.FC<IModalProps> = ({
 
   return (
     <CSSTransition
-        in={isModalOpen}
-        timeout={100}
-        classNames="modal"
-        unmountOnExit
-        appear
-        onEntered={handleTransitionModal}
-        onExit={handleTransitionModal}
-      >
-        <div className="modal">
-          <div
-            className={modalBodyClassName}
-            style={{ width: width, height: height }}
-          >
-            {children}
-          </div>
+      in={isModalOpen}
+      timeout={100}
+      classNames='modal'
+      unmountOnExit
+      appear
+      onEntered={handleTransitionModal}
+      onExit={handleTransitionModal}
+    >
+      <div className='modal'>
+        <div
+          className={modalBodyClassName}
+          style={{ width: width, height: height }}
+        >
+          {children}
         </div>
-      </CSSTransition>
+      </div>
+    </CSSTransition>
   )
 }
 

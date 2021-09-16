@@ -18,16 +18,14 @@
   &-enter-active,
   &-appear-active  {
     opacity: 1;
-    transition-property: all;
-    transition-duration: .3s;
+    transition: opacity .1s;
   }
   &-exit {
     opacity: 1;
   }
   &-exit-active {
     opacity: 0;
-    transition-property: all;
-    transition-duration: .1s;
+    transition: opacity .1s;
   }
 
   &__body {

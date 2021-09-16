@@ -17,9 +17,10 @@ interface ITaskProps {
   title: string
   description: string
   status: boolean
+  setShowAlert: (val: boolean) => void
 }
 
-const Task: React.FC<ITaskProps> = ({ id, title, description, status }) => {
+const Task: React.FC<ITaskProps> = ({ id, title, description, status, setShowAlert }) => {
   const { dispatch } = useTask()
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
@@ -33,6 +34,7 @@ const Task: React.FC<ITaskProps> = ({ id, title, description, status }) => {
 
   const handleDeleteTask = (): void => {
     dispatch({ type: 'remove', payload: id })
+    setShowAlert(true)
   }
 
   const handleEditTask = (): void => {

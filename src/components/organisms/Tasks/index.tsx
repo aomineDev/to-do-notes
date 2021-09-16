@@ -9,6 +9,7 @@ import Task from 'components/molecules/Task'
 import TextField from 'components/atoms/TextField'
 import RadioGroup from 'components/atoms/RadioGroup'
 import Radio from 'components/atoms/Radio'
+import Alert from 'components/atoms/Alert'
 
 import noTasks from 'assets/img/icons/tasks.svg'
 
@@ -24,6 +25,7 @@ const Tasks: React.FC = () => {
   const { state: tasks, dispatch } = useTask()
 
   const [title, setTitle] = useState<string>('')
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [filteredTasks, setFilteredTasks] = useState<ITask[]>(() => tasks.filter(({ status }) => !status))
   const [filterState, setFilterState] = useState<filterStates>('inProgress')
 
@@ -129,6 +131,7 @@ const Tasks: React.FC = () => {
                   title={title}
                   description={description}
                   status={status}
+                  setShowAlert={setShowAlert}
                 />
               </CSSTransition>
             ))}
@@ -148,6 +151,8 @@ const Tasks: React.FC = () => {
           }
         </div>
       </div>
+
+      <Alert show={showAlert} setShow={setShowAlert} text='Tarea eliminada.' />
     </div>
   )
 }

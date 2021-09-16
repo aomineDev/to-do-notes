@@ -19,9 +19,9 @@
     color: $color-primary;
   }
   &.is-danger {
-    color: $color-danger;
+    color: $red;
     &:hover {
-      background-color: rgba($color-danger, 0.1);
+      background-color: rgba($red, 0.1);
     }
   }
 }

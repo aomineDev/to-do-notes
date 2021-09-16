@@ -12,12 +12,13 @@ $color-disabled: #e1dfe9;
 
 // Status Colors
 $color-warning: #f9ae3f;
-$color-danger: #de5050;
+$color-error: #de5050;
 $color-success: #37bc64;
+$color-info: #37b9f1;
 
 // Soft Status Colors
 $color-warning-soft: #fff8de;
-$color-danger-soft: #fff3f3;
+$color-error-soft: #fff3f3;
 $color-success-soft: #e2f8e9;
 
 // Shades
@@ -337,9 +338,6 @@ $colors: (
   "primary": $color-primary,
   "accent": $color-accent,
   "disabled": $color-disabled,
-  "success": $color-success,
-  "warning": $color-warning,
-  "danger": $color-danger,
   "dark": $dark,
   "light": $light,
   "black": $black,
@@ -363,4 +361,11 @@ $colors: (
   "brown": $brown,
   "grey": $grey,
   "blue-grey": $blue-grey
+);
+
+$status: (
+  "success": $color-success,
+  "warning": $color-warning,
+  "error": $color-error,
+  "info": $color-info
 )

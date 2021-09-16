@@ -1,0 +1,50 @@
+@import 'assets/scss/styles.scss';
+
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: $base-border-radius;
+  color: $light;
+  padding: 16px;
+
+  @each $name, $color in $status {
+    &--#{$name} {
+      background-color: $color;
+      box-shadow: 2px 2px 8px -1px rgba($color, .7);
+    }
+  }
+  
+  &__body {
+    display: grid;
+    grid-template-columns: 30px auto;
+    align-items: center;
+    pointer-events: none;
+  }
+  &__text {
+    font-size: $font-size-sm-3;
+  }
+
+  &-enter,
+  &-appear {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  &-enter-active,
+  &-appear-active  {
+    opacity: 1;
+    transform: translateX(0);
+    transition-property: opacity, transform;
+    transition-duration: .3s;
+  }
+  &-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: .3s;
+  }
+}
