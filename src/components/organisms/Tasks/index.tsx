@@ -22,28 +22,28 @@ type filterStates = 'inProgress' | 'completed' | 'all'
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>
 
 const Tasks: React.FC = () => {
-  const { state: tasks, dispatch } = useTask()
+  const { state: tasks, addTask } = useTask()
 
   const [title, setTitle] = useState<string>('')
   const [showAlert, setShowAlert] = useState<boolean>(false)
-  const [filteredTasks, setFilteredTasks] = useState<ITask[]>(() => tasks.filter(({ status }) => !status))
+  const [filteredTasks, setFilteredTasks] = useState<ITask[]>(() => tasks.filter(({ completed }) => !completed))
   const [filterState, setFilterState] = useState<filterStates>('inProgress')
 
   useEffect(() => {
     switchStatus(filterState)
   }, [tasks])
 
-  const handleOnStatusChange = (e: ChangeEvent): void => {
+  const handleStatusChange = (e: ChangeEvent): void => {
     switchStatus(e.target.value)
   }
 
   const handleShowInProgress = (): void => {
-    setFilteredTasks(tasks.filter(({ status }) => !status))
+    setFilteredTasks(tasks.filter(({ completed }) => !completed))
     setFilterState('inProgress')
   }
 
   const handleShowCompleted = (): void => {
-    setFilteredTasks(tasks.filter(({ status }) => status))
+    setFilteredTasks(tasks.filter(({ completed }) => completed))
     setFilterState('completed')
   }
 
@@ -66,11 +66,11 @@ const Tasks: React.FC = () => {
     const newTask: ITask = {
       title,
       description: '',
-      status: false,
+      completed: false,
       id: Date.now()
     }
 
-    dispatch({ type: 'add', payload: newTask })
+    addTask(newTask)
 
     setTitle('')
   }
@@ -88,7 +88,7 @@ const Tasks: React.FC = () => {
               value="inProgress"
               style="tab"
               stateValue={filterState}
-              onChange={handleOnStatusChange}
+              onChange={handleStatusChange}
             />
             <Radio
               name="task-status"
@@ -96,7 +96,7 @@ const Tasks: React.FC = () => {
               value="completed"
               style="tab"
               stateValue={filterState}
-              onChange={handleOnStatusChange}
+              onChange={handleStatusChange}
             />
             <Radio
               name="task-status"
@@ -104,7 +104,7 @@ const Tasks: React.FC = () => {
               value="all"
               style="tab"
               stateValue={filterState}
-              onChange={handleOnStatusChange}
+              onChange={handleStatusChange}
             />
           </RadioGroup>
         </div>
@@ -120,17 +120,14 @@ const Tasks: React.FC = () => {
         </form>
         <div className="tasks__wrapper">
           <TransitionGroup>
-            {filteredTasks.map(({ id, title, description, status }: ITask) => (
+            {filteredTasks.map((task: ITask) => (
               <CSSTransition
-                key={id}
+                key={task.id}
                 timeout={150}
                 classNames="tasks__transition"
               >
                 <Task
-                  id={id}
-                  title={title}
-                  description={description}
-                  status={status}
+                  task={task}
                   setShowAlert={setShowAlert}
                 />
               </CSSTransition>
@@ -152,7 +149,11 @@ const Tasks: React.FC = () => {
         </div>
       </div>
 
-      <Alert show={showAlert} setShow={setShowAlert} text='Tarea eliminada.' />
+      <Alert
+        show={showAlert}
+        setShow={setShowAlert}
+        text='Tarea eliminada correctamente.'
+      />
     </div>
   )
 }

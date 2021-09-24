@@ -4,7 +4,7 @@ import Spinner from 'components/atoms/Spinner'
 
 import { IContentProps } from './types'
 import { Size as SpinnerSize } from 'components/atoms/Spinner/types'
-import { Color } from 'types/color'
+import type { Color } from 'types/color'
 
 const Content: React.FC<IContentProps> = ({
   isLoading = false,

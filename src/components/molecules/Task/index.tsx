@@ -4,6 +4,8 @@ import { faEllipsisV, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 import { useTask } from 'context/task'
 
+import { ITask } from 'types/task'
+
 import Menu from 'components/atoms/Menu'
 import MenuItem from 'components/atoms/MenuItem'
 import Modal from 'components/atoms/Modal'
@@ -13,27 +15,25 @@ import Form from 'components/molecules/TaskForm'
 import './styles.scss'
 
 interface ITaskProps {
-  id: number
-  title: string
-  description: string
-  status: boolean
+  task: ITask
   setShowAlert: (val: boolean) => void
 }
 
-const Task: React.FC<ITaskProps> = ({ id, title, description, status, setShowAlert }) => {
-  const { dispatch } = useTask()
+const Task: React.FC<ITaskProps> = ({ task, setShowAlert }) => {
+  const { id, title, description, completed } = task
+  const { completeTask, removeTask } = useTask()
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   let taskClassName: string = 'task'
-  if (status) taskClassName += ' is-completed'
+  if (completed) taskClassName += ' is-completed'
 
   const handleChange = (): void => {
-    dispatch({ type: 'check', payload: id })
+    completeTask(id)
   }
 
   const handleDeleteTask = (): void => {
-    dispatch({ type: 'remove', payload: id })
+    removeTask(id)
     setShowAlert(true)
   }
 
@@ -52,7 +52,7 @@ const Task: React.FC<ITaskProps> = ({ id, title, description, status, setShowAle
           <input
             type="checkbox"
             id={`task-${id}]`}
-            checked={status}
+            checked={completed}
             onChange={handleChange}
             className="task__input"
           />
@@ -92,12 +92,14 @@ const Task: React.FC<ITaskProps> = ({ id, title, description, status, setShowAle
         </div>
       </div>
 
-      <Modal isModalOpen={isModalOpen} width="500px" mobileFullSize>
+      <Modal
+        isModalOpen={isModalOpen}
+        width="500px"
+        mobileFullSize
+      >
         <Form
           isEditing={true}
-          id={id}
-          title={title}
-          description={description}
+          task={task}
           closeModal={closeModal}
         />
       </Modal>

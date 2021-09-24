@@ -14,41 +14,38 @@ type SubmitEvent = React.FormEvent<HTMLFormElement>
 
 interface IFormProps {
   isEditing?: boolean
-  id?: number
-  title?: string
-  description?: string
+  task?: ITask
   closeModal: () => void
 }
 
-const Form: React.FC<IFormProps> = ({ isEditing = false, id = 0, title = '', description = '', closeModal }) => {
-  const { dispatch } = useTask()
+const Form: React.FC<IFormProps> = ({ isEditing = false, task, closeModal }) => {
+  const { addTask, updateTask } = useTask()
 
-  const [newTitle, setNewtitle] = useState<string>(title)
-  const [newDescription, setNewDescription] = useState<string>(description)
+  const [newTitle, setNewtitle] = useState<string>(task?.title ?? '')
+  const [newDescription, setNewDescription] = useState<string>(task?.description ?? '')
 
   const handleSubmit = (e: SubmitEvent): void => {
     e.preventDefault()
 
     if (newTitle === '') return
 
-    if (isEditing) {
-      dispatch({
-        type: 'update',
-        payload: {
-          id,
-          title: newTitle,
-          description: newDescription
-        }
-      })
+    if (isEditing && task?.id !== undefined) {
+      const updatedTask: ITask = {
+        ...task,
+        title: newTitle,
+        description: newDescription
+      }
+
+      updateTask(updatedTask)
     } else {
       const newTask: ITask = {
         title: newTitle,
         description: newDescription,
-        status: false,
+        completed: false,
         id: Date.now()
       }
 
-      dispatch({ type: 'add', payload: newTask })
+      addTask(newTask)
     }
 
     closeModal()

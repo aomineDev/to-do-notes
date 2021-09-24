@@ -2,68 +2,31 @@ import { createContext, useReducer, useContext } from 'react'
 
 import { ITask } from 'types/task'
 
-type Action = { type: 'add', payload: ITask} | { type: 'remove', payload: number } | { type: 'update', payload: { id: number, title: string, description: string } } | { type: 'check', payload: number }
+import { taskReducer } from 'reducer/task'
+import { taskActions } from 'actions/task'
 
-type Dispatch = (action: Action) => void
+export type Action = { type: 'add-task', payload: ITask } | { type: 'update-task', payload: ITask } | { type: 'complete-task', payload: number } | { type: 'remove-task', payload: number }
 
-type State = ITask[]
+export type Dispatch = (action: Action) => void
 
-interface Context {
+export type State = ITask[]
+
+interface IContext {
   state: State
-  dispatch: Dispatch
+  addTask: (payload: ITask) => void
+  updateTask: (payload: ITask) => void
+  completeTask: (payload: number) => void
+  removeTask: (payload: number) => void
 }
 
-const TaskContext = createContext<Context | undefined>(undefined)
-
-function taskReducer (state: State, action: Action): State {
-  switch (action.type) {
-    case 'add': {
-      const tasks: State = [action.payload, ...state]
-
-      return tasks
-    }
-    case 'remove': {
-      const newTasks: ITask[] = [...state]
-
-      const index: number = newTasks.findIndex(({ id }) => id === action.payload)
-
-      newTasks.splice(index, 1)
-
-      return newTasks
-    }
-    case 'update': {
-      const { title, description } = action.payload
-      const newTasks: ITask[] = [...state]
-
-      const index: number = newTasks.findIndex(({ id }) => id === action.payload.id)
-
-      const task: ITask = newTasks[index]
-
-      task.title = title
-      task.description = description
-      newTasks[index] = task
-
-      return newTasks
-    }
-    case 'check': {
-      const newTasks: ITask[] = [...state]
-
-      const index: number = newTasks.findIndex(({ id }) => id === action.payload)
-
-      newTasks[index].status = !newTasks[index].status
-
-      return newTasks
-    }
-    default: {
-      throw new Error('Unhandled action type:')
-    }
-  }
-}
+const TaskContext = createContext<IContext | undefined>(undefined)
 
 export const TaskProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(taskReducer, [])
 
-  const value = { state, dispatch }
+  const { addTask, updateTask, completeTask, removeTask } = taskActions(dispatch)
+
+  const value = { state, addTask, updateTask, completeTask, removeTask }
 
   return (
     <TaskContext.Provider value={value}>
@@ -72,7 +35,7 @@ export const TaskProvider: React.FC = ({ children }) => {
   )
 }
 
-export function useTask (): Context {
+export function useTask (): IContext {
   const context = useContext(TaskContext)
 
   if (context === undefined) {

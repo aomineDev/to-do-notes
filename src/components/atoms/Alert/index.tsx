@@ -21,7 +21,6 @@ const alertRoot = document.getElementById('alert-root') as HTMLElement
 
 const Alert: React.FC<IAlertProps> = ({ show, setShow, text, time = 3000, status = 'success' }) => {
   const alertClassName: string = `alert alert--${status}`
-  let StatusIcon = faCheck
 
   useEffect(() => {
     if (show) {
@@ -30,6 +29,8 @@ const Alert: React.FC<IAlertProps> = ({ show, setShow, text, time = 3000, status
       }, time)
     }
   }, [show])
+
+  let StatusIcon = faCheck
 
   if (status === 'error') StatusIcon = faTimes
   if (status === 'warning') StatusIcon = faExclamation

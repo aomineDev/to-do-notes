@@ -6,12 +6,14 @@
   right: 20px;
   border-radius: $base-border-radius;
   color: $light;
-  padding: 12px 20px;
+  padding: 16px;
 
   @each $name, $color in $status {
     &--#{$name} {
       background-color: $color;
-      box-shadow: 2px 2px 8px -1px rgba($color, .7);
+      box-shadow: 0 12px 20px -10px rgba($color, .28),
+                  0 4px 20px 0 rgba($color, .12),
+                  0 7px 8px -5px rgba($color, .2);
     }
   }
   

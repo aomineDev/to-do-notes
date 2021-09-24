@@ -1,6 +1,6 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
-import { Color } from 'types/color'
+import type { Color } from 'types/color'
 
 export type Type = 'button' | 'submit' | 'reset'
 
