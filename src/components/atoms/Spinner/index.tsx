@@ -3,34 +3,36 @@ import './styles.scss'
 import { ISpinnerProps } from './types'
 
 const Spinner: React.FC<ISpinnerProps> = ({ size = 'medium', color }) => {
-  let radio: number
-  let coordinates: number
   let svgSize: number
 
   switch (size) {
     case 'small':
-      radio = 5
-      coordinates = 6
       svgSize = 12
       break
     case 'large':
-      radio = 20
-      coordinates = 24
       svgSize = 48
       break
     default:
-      radio = 10
-      coordinates = 12
       svgSize = 24
   }
 
-  let spinnerClassName = `spinner spinner--${size}`
+  let spinnerCircleClassName = 'spinner__circle'
 
-  if (color !== undefined) spinnerClassName += ` spinner--${color}`
+  if (color !== undefined) spinnerCircleClassName += ` spinner__circle--${color}`
 
   return (
-    <svg className={spinnerClassName} width={svgSize} height={svgSize}>
-      <circle r={radio} cx={coordinates} cy={coordinates}></circle>
+    <svg
+      className='spinner'
+      width={svgSize}
+      height={svgSize}
+      viewBox='0 0 50 50'
+    >
+      <circle
+        r='20'
+        cx='25'
+        cy='25'
+        className={spinnerCircleClassName}
+      />
     </svg>
   )
 }

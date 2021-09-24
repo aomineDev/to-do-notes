@@ -1,72 +1,43 @@
 @import 'assets/scss/styles.scss';
 
 .spinner {
-  stroke-width: 2px;
-  fill: transparent;
-  stroke: $grey-darken-4;
-  stroke-dasharray: 55;
-  animation: spinner 2s infinite linear;
+  animation: rotate 2s linear infinite;
 
-  // Sizes
-  &--small {
-    stroke-width: 1px;
-    stroke-dasharray: 25;
-    animation: spinner-small 1s infinite linear;
-  }
-  &--large {
-    stroke-width: 4px;
-    stroke-dasharray: 110;
-    animation: spinner-large 3s infinite linear;
-  }
+  &__circle {
+    stroke-width: 5px;
+    fill: none;
+    stroke: $grey-darken-4;
+    stroke-linecap: round;
+    animation: dash 1.75s ease-in-out infinite;
 
-  // Colors
-  @each $name, $color in $colors {
-    &--#{$name} {
-      stroke: $color;
+    // Colors
+    @each $name, $color in $colors {
+      &--#{$name} {
+        stroke: $color;
+      }
     }
   }
 }
 
-@keyframes spinner {
-  0% {
-    stroke-dashoffset: 55;
-  }
-
-  50% {
-    stroke-dashoffset: 0;
+@keyframes rotate {
+  100% {
     transform: rotate(360deg);
   }
-
-  100% {
-    stroke-dashoffset: 55;
-    transform: rotate(1440deg);
-  }
 }
-@keyframes spinner-small {
+
+@keyframes dash {
   0% {
-    stroke-dashoffset: 25;
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
   }
 
   50% {
-    stroke-dashoffset: 0;
-    transform: rotate(360deg);
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
   }
 
   100% {
-    stroke-dashoffset: 25;
-    transform: rotate(1080deg);
-  }
-}
-@keyframes spinner-large {
-  0% {
-    stroke-dashoffset: 110;
-  }
-  50% {
-    stroke-dashoffset: 0;
-    transform: rotate(720deg);
-  }
-  100% {
-    stroke-dashoffset: 110;
-    transform: rotate(2160deg);
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
   }
 }
