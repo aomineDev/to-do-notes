@@ -43,7 +43,7 @@ const Alert: React.FC<IAlertProps> = ({ show, setShow, text, time = 3000, status
   return (
     <CSSTransition
       in={show}
-      timeout={300}
+      timeout={500}
       classNames='alert'
       unmountOnExit
       appear

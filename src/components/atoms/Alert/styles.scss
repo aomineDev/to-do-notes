@@ -37,7 +37,8 @@
     opacity: 1;
     transform: translateX(0);
     transition-property: opacity, transform;
-    transition-duration: .3s;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(.22,.68,0,1.71);
   }
   &-exit {
     opacity: 1;
@@ -47,6 +48,6 @@
     transform: translateX(100%);
     opacity: 0;
     transition-property: opacity, transform;
-    transition-duration: .3s;
+    transition-duration: .5s;
   }
 }
